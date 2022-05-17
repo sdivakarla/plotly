@@ -3,7 +3,7 @@ function init() {
   var selector = d3.select("#selDataset");
 
   // Use the list of sample names to populate the select options
-  d3.json("samples.json").then((data) => {
+  d3.json("../samples.json").then((data) => {
     var sampleNames = data.names;
 
     sampleNames.forEach((sample) => {
@@ -60,7 +60,7 @@ function buildCharts(sample) {
     // 3. Create a variable that holds the samples array. 
     var sampleArray = data.samples
     // 4. Create a variable that filters the samples for the object with the desired sample number.
-    var selectedIdSamples = samplesArray.filter(data => data.id == sample);
+    var selectedIdSamples = sampleArray.filter(data => data.id == sample);
     console.log(selectedIdSamples);
     //  5. Create a variable that holds the first sample in the array.
     var firstSample = selectedIdSamples[0];
@@ -78,8 +78,11 @@ function buildCharts(sample) {
     // 8. Create the trace for the bar chart. 
     var barData = [{
       x: sampleValues.slice(0,10).reverse(),
+      y: yticks,
       text: otuLabels.slice(0,10).reverse(),
-      type: "bar"
+      type: "bar",
+      orientation: 'h',
+      width: 0.6,
     }];
     // 9. Create the layout for the bar chart. 
     var barLayout = {
@@ -92,6 +95,32 @@ function buildCharts(sample) {
       }
     };
     // 10. Use Plotly to plot the data with the layout. 
-    Plotly.newPlot("plot", bardata, barlayout)
-  });
+    Plotly.newPlot("bar", barData, barLayout);
+
+      // 1. Create the trace for the bubble chart.
+    var bubbleData = [{
+        x: otuIds,
+        y: sampleValues,
+        text: otuLabels,
+        mode: 'markers', 
+        marker: {
+          size:sampleValues, 
+          color: otuIds, 
+          colorscale: "Earth"
+        }
+      }
+      ];
+      console.log(bubbleData);  
+      // 2. Create the layout for the bubble chart.
+    var bubbleLayout = {
+        title: "Bacteria Cultures Per Sample", 
+        showlegend: false, 
+        height: 600,
+        width: 800
+        
+      };
+  
+      // 3. Use Plotly to plot the data with the layout.
+      Plotly.newPlot("bubble", bubbleData, bubbleLayout); 
 }
+)};
