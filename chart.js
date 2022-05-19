@@ -68,7 +68,7 @@ function buildCharts(sample) {
     var otuIds = firstSample.otu_ids;
     var otuLabels = firstSample.otu_labels;
     var sampleValues = firstSample.sample_values; 
-
+    
     // 7. Create the yticks for the bar chart.
     // Hint: Get the the top 10 otu_ids and map them in descending order  
     //  so the otu_ids with the most bacteria are last. 
@@ -122,5 +122,49 @@ function buildCharts(sample) {
   
       // 3. Use Plotly to plot the data with the layout.
       Plotly.newPlot("bubble", bubbleData, bubbleLayout); 
+    // 1. Create a variable that filters the metadata array for the object with the desired sample number.
+    var selectedMeta = data.metadata.filter(data => data.id == sample);
+    console.log(selectedMeta);  
+      // 2. Create a variable that holds the first sample in the metadata array.
+      var firstSample2 = selectedMeta[0];
+      var firstMeta = firstSample2.metadata;
+      var wfreq = parseFloat(firstSample2.wfreq);
+ // 4. Create the trace for the gauge chart.
+    var gaugeData = [ {
+      type: "indicator", 
+      mode: "gauge+number",
+      value: wfreq, 
+      title: { text: "Frequency of Washing"}, 
+      gauge: {
+        axis: {range: [null, 10], tickwidth: 1, 
+        tickcolor: "darkblue"}, 
+        bar: {color: "darkblue"}, 
+        bgcolor: "white", 
+        borderwidth: 2, 
+        bordercolor: "gray", 
+        steps: [
+          {range: [0, 2], color: "cyan"}, 
+          {range: [2, 4], color: "orange"}, 
+          {range: [4, 6], color: "yellow"}, 
+          {range: [6,8], color: "green"}, 
+          {range: [8, 10], color: "purple"}
+        ],
+
+      }
+    }
+     
+];
+
+// 5. Create the layout for the gauge chart.
+    var gaugeLayout = { 
+    width: 500,
+    height: 400,
+    margin: { t: 25, r: 25, l: 25, b: 25 },
+    paper_bgcolor: "lavender",
+    font: { color: "darkblue", family: "Arial" }
+};
+
+// 6. Use Plotly to plot the gauge data and layout.
+Plotly.newPlot("gauge", gaugeData, gaugeLayout);
+});
 }
-)};
