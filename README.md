@@ -1,37 +1,10 @@
-## Welcome to GitHub Pages
+## Interactive Dashboard for Belly Button Bacteria Analysis
 
-You can use the [editor on GitHub](https://github.com/sdivakarla/plotly/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+# Overview
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Bacterial analysis of belly button samples were used to analyze the types and frequency of detection of bacterial strains.  The client desired a dashboard with a drop down menu to be able to see the data for each subject. 
 
-### Markdown
+# Results 
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+The interactive dashboard [Belly Button Biodiversity](https://sdivakarla.github.io/plotly/) presents the demographic panel for each subject, the 10 most detected bacterial strains, the belly button washing frequency as well as a bubble plot of the data. 
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/sdivakarla/plotly/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
