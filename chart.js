@@ -124,11 +124,9 @@ function buildCharts(sample) {
       Plotly.newPlot("bubble", bubbleData, bubbleLayout); 
     // 1. Create a variable that filters the metadata array for the object with the desired sample number.
     var selectedMeta = data.metadata.filter(data => data.id == sample);
-    console.log(selectedMeta);  
+    console.log("SelectedMeta" + selectedMeta);  
       // 2. Create a variable that holds the first sample in the metadata array.
-      var firstSample2 = selectedMeta[0];
-      var firstMeta = firstSample2.metadata;
-      var wfreq = parseFloat(firstSample2.wfreq);
+      var wfreq = selectedMeta[0].wfreq;
  // 4. Create the trace for the gauge chart.
     var gaugeData = [ {
       type: "indicator", 
@@ -136,12 +134,12 @@ function buildCharts(sample) {
       value: wfreq, 
       title: { text: "Frequency of Washing"}, 
       gauge: {
-        axis: {range: [null, 10], tickwidth: 1, 
-        tickcolor: "darkblue"}, 
-        bar: {color: "darkblue"}, 
-        bgcolor: "white", 
-        borderwidth: 2, 
-        bordercolor: "gray", 
+        axis: {
+          range: [null, 10], 
+          tickmode: "array", 
+          tickvals: [0,2,4,6,8,10],
+          ticktext: [0,2,4,6,8,10]}, 
+          bar: {color: "darkblue"}, 
         steps: [
           {range: [0, 2], color: "cyan"}, 
           {range: [2, 4], color: "orange"}, 
@@ -157,12 +155,17 @@ function buildCharts(sample) {
 
 // 5. Create the layout for the gauge chart.
     var gaugeLayout = { 
-    width: 500,
-    height: 400,
-    margin: { t: 25, r: 25, l: 25, b: 25 },
-    paper_bgcolor: "lavender",
-    font: { color: "darkblue", family: "Arial" }
-};
+      autosize: true,
+      annotations: [{
+        xref: 'paper',
+        yref: 'paper',
+        x: 0.5,
+        xanchor: 'center',
+        y: 0,
+        yanchor: 'center',
+        text: "The gauge displays your belly button weekly washing frequency",
+        showarrow: false
+}]};
 
 // 6. Use Plotly to plot the gauge data and layout.
 Plotly.newPlot("gauge", gaugeData, gaugeLayout);
