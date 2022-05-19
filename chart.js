@@ -92,7 +92,17 @@ function buildCharts(sample) {
         r: 100,
         r: 100,
         b: 100
-      }
+      },
+      annotations: [{
+        xref: 'paper',
+        yref: 'paper',
+        x: 0.5,
+        xanchor: 'center',
+        y: -0.25,
+        yanchor: 'center',
+        text: 'The bar chart displays the top 10 bacterial species (OTUs)<br>with the number of samples found in your belly button',
+        showarrow: false
+      }]
     };
     // 10. Use Plotly to plot the data with the layout. 
     Plotly.newPlot("bar", barData, barLayout);
@@ -115,9 +125,8 @@ function buildCharts(sample) {
     var bubbleLayout = {
         title: "Bacteria Cultures Per Sample", 
         showlegend: false, 
-        height: 600,
-        width: 800
-        
+        xaxis: {title: "OTU ID", automargin: true},
+        yaxis: {automargin: true}
       };
   
       // 3. Use Plotly to plot the data with the layout.
@@ -144,8 +153,8 @@ function buildCharts(sample) {
           {range: [0, 2], color: "cyan"}, 
           {range: [2, 4], color: "orange"}, 
           {range: [4, 6], color: "yellow"}, 
-          {range: [6,8], color: "green"}, 
-          {range: [8, 10], color: "purple"}
+          {range: [6,8], color: "lime"}, 
+          {range: [8, 10], color: "green"}
         ],
 
       }
